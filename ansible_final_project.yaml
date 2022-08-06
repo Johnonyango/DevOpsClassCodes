@@ -8,24 +8,24 @@
     service: name=docker state=started
 
   - name: create docker image using war file
-    command: docker build -t myproject:CICD .
+    command: docker build -t myproject:$BUILD_NUMBER .
     args:
       chdir: /opt/myproject
 
   - name: create tag to image
-    command: docker tag myproject:CICD johnte/myproject:CICD
+    command: docker tag myproject:$BUILD_NUMBER johnte/myproject:$BUILD_NUMBER
 
   - name: loginto docker
     command: docker login --username johnte --password King5555!
 
   - name: push image on to dockerhub
-    command: docker push johnte/myproject:CICD
+    command: docker push johnte/myproject:$BUILD_NUMBER
     
   - name: Do deployment in Docker Swarm cluster
-    command: docker service create --name mysvc-ansible --replicas 1 -p 8282:8080 johnte/myproject:CICD
+    command: docker service create --name mysvc-ansible --replicas 1 -p 8282:8080 johnte/myproject:$BUILD_NUMBER
     
   - name: remove docker images form ansible server
-    command: docker rmi --force myproject:CICD johnte/myproject:CICD
+    command: docker rmi --force myproject:CICD johnte/myproject:$BUILD_NUMBER
     ignore_errors: yes
     
 #  - name: Do deployment to kuberetes Prod
