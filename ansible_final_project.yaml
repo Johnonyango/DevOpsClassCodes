@@ -2,7 +2,8 @@
 - hosts: localhost
   become: true
   become_user: root
-  ansible_become_pass: ansible
+  vars:
+   ansible_become_pass: ansible
 
   tasks:
   - name: Start docker
