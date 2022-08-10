@@ -10,7 +10,7 @@
     service: name=docker state=started
 
   - name: create docker image using war file
-    command: docker build -t myproject:$BUILD_NUMBER .
+    command: docker build -t . myproject:$BUILD_NUMBER 
     args:
       chdir: /opt/myproject
 
