@@ -10,12 +10,12 @@
     service: name=docker state=started
 
   - name: create docker image using war file
-    command: docker build -t myproject:$BUILD_NUMBER . 
+    command: docker build -t myproject . 
     args:
       chdir: /opt/myproject
 
   - name: create tag to image
-    command: docker tag myproject:$BUILD_NUMBER johnte/myproject:$BUILD_NUMBER
+    command: docker tag myprojec johnte/myproject:$BUILD_NUMBER
 
   - name: loginto docker
     command: docker login --username johnte --password King5555!
