@@ -12,7 +12,7 @@
   - name: create docker image using war file
     command: docker build -t myproject .
     args:
-      chdir: /opt/myproject
+      chdir: /home/ansible
 
   - name: create tag to image
     command: docker tag myprojec johnte/myproject:$BUILD_NUMBER
